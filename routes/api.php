@@ -21,7 +21,7 @@ Route::post('Login', function (SignInRequest $request) {
     }
     else{
         $error["Error"][0] = "Email or Password is incorrect.";
-        return response()->json($error, 500);
+        return response()->json($error, 401);
     }
 });
 Route::post('UploadImage', function (Request $request) {
@@ -34,7 +34,7 @@ Route::post('UploadImage', function (Request $request) {
        $user = Auth::loginUsingId($request->id);
        if (!$user) {
         $error["Error"][0] = "User Not found.";
-        return response()->json($error, 500);
+        return response()->json($error, 401);
     }
     
     $image = $request->file('image');
