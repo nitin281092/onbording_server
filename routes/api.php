@@ -36,9 +36,9 @@ Route::post('UploadImage', function (Request $request) {
         $error["Error"][0] = "User Not found.";
         return response()->json($error, 500);
     }
-    $uploadFolder = 'users';
+    
     $image = $request->file('image');
-    $image_uploaded_path = $image->store($uploadFolder, ['disk' => 'local']);
+    $image_uploaded_path = $image->store("", ['disk' => 'local']);
     $user->image = $image_uploaded_path;
     $user->Save();
     return $user;
